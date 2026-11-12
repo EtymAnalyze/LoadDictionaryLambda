@@ -1,11 +1,13 @@
 import boto3
+import urllib.parse
 
 def lambda_handler(event, context):
     # Get input file from S3 Bucket
     print("Event received:", event)
     try:
         input_bucket = event['Records'][0]['s3']['bucket']['name']
-        input_key = event['Records'][0]['s3']['object']['key']
+        input_key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'])
+        print(f"Fetching s3://{input_bucket}/{input_key}")
 
         # Read input file from S3
         s3_client = boto3.client('s3')
