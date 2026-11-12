@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         dynamodb = boto3.resource('dynamodb')
         table = dynamodb.Table('english-words')
 
-        words = [word for word in input_data.splitlines() if word.strip()]
+        words = input_data.splitlines()
         print(f"Inserting {len(words)} words into DynamoDB.")
         with table.batch_writer() as batch:
             for word in words:
