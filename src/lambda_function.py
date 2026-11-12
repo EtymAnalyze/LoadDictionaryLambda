@@ -17,6 +17,7 @@ def lambda_handler(event, context):
         table = dynamodb.Table('english-words')
 
         words = [word for word in input_data.splitlines() if word.strip()]
+        print(f"Inserting {len(words)} words into DynamoDB.")
         with table.batch_writer() as batch:
             for word in words:
                 batch.put_item(Item={'word': word})
