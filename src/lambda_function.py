@@ -2,6 +2,7 @@ import boto3
 
 def lambda_handler(event, context):
     # Get input file from S3 Bucket
+    print("Event received:", event)
     try:
         input_bucket = event['Records'][0]['s3']['bucket']['name']
         input_key = event['Records'][0]['s3']['object']['key']
