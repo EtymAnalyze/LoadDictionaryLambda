@@ -14,6 +14,7 @@ def lambda_handler(event, context):
         response = s3_client.get_object(Bucket=input_bucket, Key=input_key)
 
         input_data = response['Body'].read().decode('utf-8')
+        print("Successfully read characters:", len(input_data))
 
         # For each line, treat it as a word and batch insert into DynamoDB
         dynamodb = boto3.resource('dynamodb')
