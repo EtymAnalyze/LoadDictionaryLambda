@@ -24,7 +24,7 @@ def lambda_handler(event, context):
         print(f"Inserting {len(words)} words into DynamoDB.")
         with table.batch_writer() as batch:
             for word in words:
-                batch.put_item(Item={'word': word})
+                batch.put_item(Item={'word': word, 'MerriamStatus': 'NotFetched'})
 
         return {
             'statusCode': 200,
