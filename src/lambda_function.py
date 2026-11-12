@@ -31,6 +31,7 @@ def lambda_handler(event, context):
             'body': f'Successfully processed {len(words)} words from {input_key} and inserted into DynamoDB.'
         }
     except Exception as e:
+        print(f"Error processing file: {str(e)}")
         return {
             'statusCode': 500,
             'body': f'Error processing file: {str(e)}'
